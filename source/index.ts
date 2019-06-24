@@ -1,7 +1,7 @@
-import { Transaction } from './transaction/index';
-import {Scenario} from "./transaction/schema/index";
+///<reference path="transaction/schema/Schema.ts"/>
+///<reference path="transaction/Transaction.ts"/>
 
-const scenario: Array<Scenario> = [
+const scenario: Array<Schema.Scenario> = [
     {
         index: 1,
         meta: {
@@ -22,7 +22,7 @@ const scenario: Array<Scenario> = [
     }
 ];
 
-const transaction = new Transaction();
+const transaction = new Transaction.Transaction();
 
 (async () => {
     try {
