@@ -1,5 +1,4 @@
-namespace Schema
-{
+export namespace Schema {
     export interface Log {
         index: number;
         meta: { title: string; description: string };

@@ -1,19 +1,17 @@
-///<reference path="schema/Schema.ts"/>
+import {Schema} from './schema/Schema'
 
-namespace Transaction {
+export namespace Transaction {
     export class Transaction {
         store: object | null;
         logs: Array<Schema.Log>;
-        protected logSchema: object;
 
         constructor
-        () {
+            () {
             this.store = {};
             this.logs = [];
-            this.logSchema = {}
         }
 
-        async dispatch(scenario: Array<Schema.Scenario>){
+        async dispatch(scenario: Array<Schema.Scenario>) {
             scenario.sort((a, b) => a.index - b.index);
             this.validate(scenario);
 
@@ -31,18 +29,18 @@ namespace Transaction {
                     error: null
                 };
 
-                storeBefore = {...this.store};
+                storeBefore = { ...this.store };
 
                 try {
                     await scenario[i].call(this.store);
 
                     log.storeBefore = storeBefore;
-                    storeAfter = {...this.store};
+                    storeAfter = { ...this.store };
                     log.storeAfter = storeAfter;
 
                     this.logs.push(log);
                 } catch (err) {
-                    storeAfter = {...this.store};
+                    storeAfter = { ...this.store };
 
                     log.error = {
                         name: err.name,
@@ -76,7 +74,6 @@ namespace Transaction {
         }
 
         validate(scenario: Array<Schema.Scenario>): void {
-
             if (scenario[scenario.length - 1].hasOwnProperty('restore')) {
                 throw new Error(`restore method is extra`)
             }

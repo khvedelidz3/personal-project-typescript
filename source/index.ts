@@ -1,5 +1,5 @@
-///<reference path="transaction/schema/Schema.ts"/>
-///<reference path="transaction/Transaction.ts"/>
+import {Transaction} from './transaction/Transaction';
+import {Schema} from './transaction/schema/Schema';
 
 const scenario: Array<Schema.Scenario> = [
     {
