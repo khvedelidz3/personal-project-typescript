@@ -1,5 +1,13 @@
 import { Schema } from './schema/Schema'
 
+function logs () {
+    return function (val: boolean) {
+        if(val) {
+            
+        }
+    }
+}
+
 export namespace Transaction {
     export class Transaction {
         store: object | null;
@@ -11,6 +19,7 @@ export namespace Transaction {
             this.logs = [];
         }
 
+        @logs(true)
         async dispatch(scenario: Array<Schema.Scenario>) {
             scenario.sort((a, b) => a.index - b.index);
             this.validate(scenario);
