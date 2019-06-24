@@ -1,5 +1,5 @@
-import {Transaction} from './transaction/Transaction';
-import {Schema} from './transaction/schema/Schema';
+import { Transaction } from './transaction/Transaction';
+import { Schema } from './transaction/schema/Schema';
 
 const scenario: Array<Schema.Scenario> = [
     {

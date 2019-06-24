@@ -1,4 +1,4 @@
-import {Schema} from './schema/Schema'
+import { Schema } from './schema/Schema'
 
 export namespace Transaction {
     export class Transaction {
