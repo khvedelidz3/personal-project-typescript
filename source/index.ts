@@ -4,7 +4,7 @@ import { Transaction } from "./transaction/Transaction";
 
 const scenario: Scenario[] = [
     {
-        call: async (store: object | null) => {
+        call: async (store: object) => {
             console.log("call 1");
         },
         index: 1,
@@ -14,7 +14,7 @@ const scenario: Scenario[] = [
         },
     },
     {
-        call: async (store: object | null) => {
+        call: async (store: object) => {
             console.log("call 2");
         },
         index: 2,
