@@ -1,12 +1,6 @@
-import { Schema } from './schema/Schema'
-
-function logs () {
-    return function (val: boolean) {
-        if(val) {
-            
-        }
-    }
-}
+import {Schema} from './schema/Schema'
+import {Log} from "./decorators/Log";
+import logs = Log.logs;
 
 export namespace Transaction {
     export class Transaction {
@@ -14,7 +8,7 @@ export namespace Transaction {
         logs: Array<Schema.Log>;
 
         constructor
-            () {
+        () {
             this.store = {};
             this.logs = [];
         }
@@ -22,6 +16,7 @@ export namespace Transaction {
         @logs(true)
         async dispatch(scenario: Array<Schema.Scenario>) {
             scenario.sort((a, b) => a.index - b.index);
+
             this.validate(scenario);
 
             let n = scenario.length;
@@ -38,18 +33,18 @@ export namespace Transaction {
                     error: null
                 };
 
-                storeBefore = { ...this.store };
+                storeBefore = {...this.store};
 
                 try {
                     await scenario[i].call(this.store);
 
                     log.storeBefore = storeBefore;
-                    storeAfter = { ...this.store };
+                    storeAfter = {...this.store};
                     log.storeAfter = storeAfter;
 
                     this.logs.push(log);
                 } catch (err) {
-                    storeAfter = { ...this.store };
+                    storeAfter = {...this.store};
 
                     log.error = {
                         name: err.name,
