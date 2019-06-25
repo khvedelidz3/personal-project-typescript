@@ -30,7 +30,7 @@ const transaction = new Transaction();
 (async () => {
     try {
         await transaction.dispatch(scenario);
-        const store: null | object = transaction.store;
+        const store = transaction.store;
         const logs: Log[] = transaction.logs;
         console.log(store);
         console.log(logs);
